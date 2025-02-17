@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be My GF? 💕</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            text-align: center;
+            background-color: #ffe6f2;
+            padding: 50px;
+            overflow: hidden;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            animation: pop 0.5s ease-in-out;
+        }
+        @keyframes pop {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        h1 {
+            color: #ff66b2;
+            font-size: 30px;
+        }
+        p {
+            font-size: 18px;
+        }
+        button {
+            font-size: 20px;
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .yes {
+            background-color: #66ff66;
+            font-size: 22px;
+            padding: 12px 25px;
+        }
+        .no {
+            background-color: #ff6666;
+            font-size: 22px;
+            padding: 12px 25px;
+        }
+        .no:hover {
+            transform: translateX(30px);
+        }
+        .hearts {
+            position: absolute;
+            color: #ff4d94;
+            font-size: 24px;
+            animation: float 4s infinite ease-in-out;
+        }
+        @keyframes float {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-100px); opacity: 0; }
+        }
+    </style>
+</head>
+   <body>
+    <div class="container">
+        <h1>Will you be my girlfriend? 💖</h1>
+        <p id="message">Pretty please? 🥺</p>
+        <button class="yes" onclick="acceptProposal()">Yes 💕</button>
+        <button class="no" onclick="declineProposal()">No 😢</button>
+    </div>
+
+    <script>
+        let attempts = 0;
+        function acceptProposal() {
+            document.body.innerHTML = '<h1>Yay! You said yes! 🎉😍</h1>';
+        }
+        function declineProposal() {
+            attempts++;
+            const button = document.querySelector('.no');
+            const message = document.getElementById('message');
+            
+            if (attempts === 1) {
+                message.innerText = "Are you sure? I'm really cute! 🥺";
+            } else if (attempts === 2) {
+                message.innerText = "But we’d be so adorable together! 🥰";
+            } else if (attempts === 3) {
+                message.innerText = "I'll buy you snacks and give you all the cuddles! 🍪💕";
+            } else if (attempts === 4) {
+                message.innerText = "Pleaseee? I promise to make you smile every day! 😊";
+            } else {
+                message.innerText = "I won't give up! 💖";
+                button.style.position = 'absolute';
+                button.style.left = Math.random() * (window.innerWidth - 100) + 'px';
+                button.style.top = Math.random() * (window.innerHeight - 50) + 'px';
+            }
+        }
+        setInterval(() => {
+            const heart = document.createElement('div');
+            heart.innerText = '💖';
+            heart.classList.add('hearts');
+            heart.style.left = Math.random() * window.innerWidth + 'px';
+            heart.style.top = window.innerHeight + 'px';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 4000);
+        }, 500);
+    </script>
+</body>
+</html>
